@@ -40,6 +40,15 @@ public class Employee implements Serializable {
 		super();
 	}
 
+	public Employee(String firstName, String lastName, String email, String contactNo, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.contactNo = contactNo;
+		this.password = password;
+	}
+
 	public long getId() {
 		return id;
 	}
