@@ -1,28 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.scss';
+import React, { Component, Fragment } from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
+import { loginUser } from './store/actions/UserActions';
+
+// Routes
+
+import Home from './views/Home';
+import Dashboard from './views/Dashboard';
+
+// Components
+
+import Navbar from './components/common/Navbar';
+
+// Icons
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navbar/>
+        <Router>
+          <Fragment>
+            <Route path="/" exact component={Home}/>
+            <Route path="/dashboard" exact component={Dashboard}/>
+          </Fragment>
+        </Router>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({
+  ...state,
+  user: state.userReducers
+})
+
+const mapDispatchToProps = (dispatch: any) => ({
+  LOGIN_USER: dispatch(loginUser)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
