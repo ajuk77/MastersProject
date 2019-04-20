@@ -21,3 +21,7 @@ $body-color: $coal;
 
 // Get bootstrap base config
 @import "~bootstrap/scss/bootstrap";
+
+.font-600 {
+    font-weight: 600;
+}

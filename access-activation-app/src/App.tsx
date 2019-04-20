@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { loginUser } from './store/actions/UserActions';
 
 // Routes
@@ -19,15 +19,15 @@ import Navbar from './components/common/Navbar';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar/>
+      <Fragment>
+        <Navbar />
         <Router>
           <Fragment>
-            <Route path="/" exact component={Home}/>
-            <Route path="/dashboard" exact component={Dashboard}/>
+            <Route path="/" exact component={Home} />
+            <Route path="/dashboard" exact component={Dashboard} />
           </Fragment>
         </Router>
-      </div>
+      </Fragment>
     );
   }
 }
