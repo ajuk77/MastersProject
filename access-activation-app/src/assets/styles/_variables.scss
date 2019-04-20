@@ -1,0 +1,23 @@
+// Global settings
+@import "./fonts";
+
+$dusty: #96858F;
+$silk: #6D7993;
+$paper: #F4F4F4;
+$overcast: #9099A2;
+$coal: #252525;
+
+$theme-colors: (
+    "primary": $dusty,
+    "secondary": $silk,
+    "accent": $overcast,
+    "light": $paper,
+    "dark": $coal
+);
+
+$body-bg: $paper;
+$body-color: $coal;
+
+
+// Get bootstrap base config
+@import "~bootstrap/scss/bootstrap";
