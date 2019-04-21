@@ -1,16 +1,21 @@
 import { LOGIN_USER, LOGOUT_USER } from './ActionTypes';
-import { IUser } from '../../interfaces';
+import { IUserInfo } from '../../interfaces';
 
-export const loginUser = (user: IUser) => ({
-    type: LOGIN_USER,
-    payload: {
-        user: user
+
+export const loginUser = (payload: IUserInfo) => {
+    return { 
+        type: LOGIN_USER.type,
+        payload: {
+            accessToken: payload.accessToken,
+            user: payload.user
+        }
     }
-});
+};
 
-export const logoutUser = (user: IUser) => ({
-    type: LOGOUT_USER,
+export const logoutUser = (payload: IUserInfo) => ({
+    type: LOGOUT_USER.type,
     payload: {
-        user: user
+        accessToken: payload.accessToken,
+        user: payload.user
     }
 })

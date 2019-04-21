@@ -25,3 +25,26 @@ $body-color: $coal;
 .font-600 {
     font-weight: 600;
 }
+
+html, body {
+    height: 100%;
+}
+
+#root{
+    height: 100%;
+}
+
+body::-webkit-scrollbar {
+    width: 0.25em;
+}
+ 
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: $silk;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: $dusty;
+  outline: 1px solid $silk;
+}

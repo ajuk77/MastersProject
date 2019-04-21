@@ -1,22 +1,44 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { loginUser } from './store/actions/UserActions';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUserCircle, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
 // Routes
 
 import Home from './views/Home';
 import Dashboard from './views/Dashboard';
-
+import { AppLogin } from './views/Login';
 // Components
 
 import Navbar from './components/common/Navbar';
+import { Footer } from './components/common/Footer';
+import { RegisterEmployee } from './views/Register';
+import PrivateRoute from './components/auth/PrivateRoute';
+import unauthorized from './views/Unauthorized';
+import UserProfile from './views/UserProfile';
+
 
 // Icons
+library.add(
+  faUserCircle,
+  faChevronCircleRight
+)
 
-class App extends Component {
+interface IAppProps{
+  loginUser?: any;
+  auth?: any;
+  UserReducers?: any;
+}
+
+interface IAppState{}
+
+class App extends Component<IAppProps, IAppState> {
+
+  constructor(props: IAppProps) {
+    super(props);
+  }
+
   render() {
     return (
       <Fragment>
@@ -24,21 +46,24 @@ class App extends Component {
         <Router>
           <Fragment>
             <Route path="/" exact component={Home} />
-            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/unauthorized" exact component={unauthorized} />
+            <Route path="/login" exact component={AppLogin} />
+            <Route path="/register" exact component={RegisterEmployee} />
+            <PrivateRoute path="/dashboard" accessToken={this.props.auth.accessToken} exact component={Dashboard}/>
+            <PrivateRoute path="/profile" accessToken={this.props.auth.accessToken} exact component={UserProfile}/>
           </Fragment>
         </Router>
+        <Footer />
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = (state: any) => ({
-  ...state,
-  user: state.userReducers
-})
+const mapStateToProps = (state: any) => {
+  return {
+    ...state,
+    auth: state.UserReducer
+  }
+}
 
-const mapDispatchToProps = (dispatch: any) => ({
-  LOGIN_USER: dispatch(loginUser)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
