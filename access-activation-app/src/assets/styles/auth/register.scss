@@ -1,0 +1,13 @@
+.medium-card {
+    width: 450px;
+    border-radius: 15px !important;
+    .card-header{
+        border-radius: 15px 15px 0px 0px!important;
+    }
+}
+
+.register-container {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+}
