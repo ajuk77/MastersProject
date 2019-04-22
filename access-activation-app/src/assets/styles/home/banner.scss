@@ -1,0 +1,50 @@
+@import '../variables';
+
+.banner {
+    margin-top: 3rem;
+}
+
+.viewport-header {
+    height: 100vh;
+    text-align: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #252525;
+}
+
+.image-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -99;
+    background: url('../../images/office.svg') no-repeat;
+    background-size: cover;
+}
+
+.banner-overlay {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    background: $silk;
+    opacity: .9;
+}
+
+    .banner-content{
+        display: block;
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .banner-title{
+        font-size: 3em;
+    }
+

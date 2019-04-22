@@ -1,7 +1,13 @@
 export interface IUser {
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
-    contactNo: number;
+    contactNo: string;
     email: string;
+    password?: string;
+}
+
+export interface IUserInfo {
+    accessToken: string;
+    user: IUser
 }

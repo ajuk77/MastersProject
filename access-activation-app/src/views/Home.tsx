@@ -1,11 +1,22 @@
 import React, {Component, Fragment} from 'react';
+import { Banner } from '../components/home/Banner';
+import { Sellout } from '../components/home/Sellout';
+import { Container } from 'reactstrap';
 
-class AppHome extends Component {
+interface IAppHomeProps{}
+
+class AppHome extends Component<IAppHomeProps> {
+    
+    componentDidMount() {
+        document.title = 'Access Activation App - Home'
+    }
+
     render() {
         return (
-            <Fragment>
-                Home!
-            </Fragment>
+            <Container fluid>
+                <Banner/>
+                <Sellout/>
+            </Container>
         )
     }
 }

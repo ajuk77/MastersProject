@@ -9,5 +9,4 @@ public class AccessIdServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AccessIdServerApplication.class, args);
 	}
-
 }
