@@ -49,7 +49,7 @@ public class GenerateAccessCardService implements IGenerateAccessCardService{
 			
 			response.put("uuid", uuid);
 			response.put("email", email);
-			response.put("token", token);
+			//response.put("token", token);
 			response.put("id", id);
 			return response;
 			

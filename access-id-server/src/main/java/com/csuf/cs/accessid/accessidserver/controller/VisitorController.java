@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,11 +29,12 @@ public class VisitorController {
 	private IAuthUtil authUtil;
 
 	@PostMapping
-	public @ResponseBody ResponseEntity<Map<String, Object>> createVisitor(@RequestBody Map<String, Object> payload) {
+	public @ResponseBody ResponseEntity<Map<String, Object>> createVisitor(@RequestHeader("authorization") String jwt,
+			@RequestBody Map<String, Object> payload) {
 		try {
 			Map<String, Object> response = new HashMap<>();
-			String token = payload.get("token").toString();
-			if (!authUtil.verifyAuthToken(token)) {
+
+			if (!authUtil.verifyAuthToken(jwt)) {
 				response.put("error", "Access token is invalid");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
 			}
