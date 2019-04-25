@@ -35,7 +35,8 @@ public class Visitor extends ScheduleAccessCard {
 	}
 
 	public Visitor(long employeeId, String uuid, String email, Timestamp activationStartTime,
-			Timestamp activationEndTime, String state, String firstName, String lastName, String contactNo, String visitorEmail) {
+			Timestamp activationEndTime, String state, String firstName, String lastName, String contactNo,
+			String visitorEmail) {
 		super(employeeId, uuid, email, activationStartTime, activationEndTime, state);
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -77,6 +78,14 @@ public class Visitor extends ScheduleAccessCard {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "{id=" + this.getId() + ", employeeId=" + this.getEmployeeId() + ", uuid=" + this.getUuid() + ", email="
+				+ this.getEmail() + ", activationStartTime=" + this.getActivationStartTime() + ", activationEndTime="
+				+ this.getActivationEndTime() + ", state=" + this.getState() + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", contactNo=" + contactNo + ", visitorEmail=" + visitorEmail + "}";
 	}
 
 }
