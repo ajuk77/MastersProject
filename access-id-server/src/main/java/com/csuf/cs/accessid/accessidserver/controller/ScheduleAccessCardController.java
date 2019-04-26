@@ -40,11 +40,11 @@ public class ScheduleAccessCardController {
 				response.put("error", "Access token is invalid");
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
 			}
-			Map<String, Object> accessToken = generateAccessCardService.generateAccessCard(payload);
-			if (accessToken.containsKey("error")) {
-				return new ResponseEntity<Map<String, Object>>(accessToken, HttpStatus.UNAUTHORIZED);
+			Map<String, Object> idCard = generateAccessCardService.generateAccessCard(payload);
+			if (idCard.containsKey("error")) {
+				return new ResponseEntity<Map<String, Object>>(idCard, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			return new ResponseEntity<Map<String, Object>>(accessToken, HttpStatus.ACCEPTED);
+			return new ResponseEntity<Map<String, Object>>(idCard, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
 			Map<String, Object> response = new HashMap<>();
