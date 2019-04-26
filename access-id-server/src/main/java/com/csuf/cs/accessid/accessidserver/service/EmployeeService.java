@@ -31,7 +31,7 @@ public class EmployeeService implements IEmployeeService {
 		Map<String, Object> response = new HashMap<String, Object>();
 		employeeRepository.save(employee);
 		response.put("success", true);
-		response.put("employee", employee.toString());
+		response.put("employee", employee);
 		return response;
 	}
 

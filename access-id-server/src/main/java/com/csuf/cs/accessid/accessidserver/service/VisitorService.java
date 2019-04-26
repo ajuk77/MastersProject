@@ -47,7 +47,7 @@ public class VisitorService implements IVisitorService {
 			Visitor visitor = new Visitor(employeeId, uuid, employeeEmail, startTimestamp, endTimestamp, state,
 					firstName, lastName, contactNo, visitorEmail);
 			visitor = visitorRepository.save(visitor);
-			response.put("visitor", visitor.toString());
+			response.put("visitor", visitor);
 			response.put("success", true);
 			return response;
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class VisitorService implements IVisitorService {
 				response.put("success", true);
 				ObjectMapper mapper = new ObjectMapper();
 				Map<?, ?> objMap = mapper.convertValue(visitor, Map.class);
-				response.put("visitor", visitor.toString());
+				response.put("visitor", visitor);
 				return response;
 			} else {
 				response.put("invalid", "Visitor pass has been expired");

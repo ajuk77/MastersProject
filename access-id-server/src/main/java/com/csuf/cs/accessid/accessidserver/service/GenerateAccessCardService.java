@@ -35,8 +35,6 @@ public class GenerateAccessCardService implements IGenerateAccessCardService{
 			
 			String email = payload.get("email").toString();
 			long id = Long.valueOf(payload.get("id").toString());
-			String token = payload.get("token").toString();
-			//token is valid, and checked in controller itself 
 			String uuid = UUID.randomUUID().toString();
 			
 			long currentTime = System.currentTimeMillis();
