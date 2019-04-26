@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.csuf.cs.accessid.accessidserver.model.Visitor;
 import com.csuf.cs.accessid.accessidserver.repository.VisitorRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class VisitorService implements IVisitorService {
@@ -55,6 +56,39 @@ public class VisitorService implements IVisitorService {
 			return response;
 		}
 
+	}
+
+	@Override
+	public Map<String, Object> validateVisitorPass(Map<String, Object> payload) {
+		try {
+			Map<String, Object> response = new HashMap<>();
+			String uuid = payload.get("uuid").toString();
+			if (null == uuid || uuid.isEmpty()) {
+				response.put("error", "UUID is missing");
+				return response;
+			}
+			Visitor visitor = visitorRepository.findVisitorByUniqueId(uuid);
+			if (null == visitor) {
+				response.put("invalid", "Visitor with uuid = " + uuid + " + not found");
+			}
+			long currentTime = System.currentTimeMillis();
+			Timestamp currentTimestamp = new Timestamp(currentTime);
+			if (currentTimestamp.before(visitor.getActivationEndTime())
+					&& currentTimestamp.after(visitor.getActivationStartTime())) {
+				response.put("success", true);
+				ObjectMapper mapper = new ObjectMapper();
+				Map<?, ?> objMap = mapper.convertValue(visitor, Map.class);
+				response.put("visitor", visitor.toString());
+				return response;
+			} else {
+				response.put("invalid", "Visitor pass has been expired");
+				return response;
+			}
+		} catch (Exception e) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("error", "Something went wrong, please try again!");
+			return response;
+		}
 	}
 
 }
