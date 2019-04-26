@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.csuf.cs.accessid.accessidserver.repository.VisitorRepository;
 import com.csuf.cs.accessid.accessidserver.service.IVisitorService;
 import com.csuf.cs.accessid.accessidserver.util.IAuthUtil;
 
@@ -66,6 +67,28 @@ public class VisitorController {
 				return new ResponseEntity<Map<String, Object>>(visitorPass, HttpStatus.UNAUTHORIZED);
 			}
 			return new ResponseEntity<Map<String, Object>>(visitorPass, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("error", "Something went wrong, please try again!");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+
+	@RequestMapping
+	public @ResponseBody ResponseEntity<Map<String, Object>> getAllVisitorsOfEmployee(
+			@RequestHeader("authorization") String jwt, @RequestBody Map<String, Object> payload) {
+		try {
+			Map<String, Object> response = new HashMap<>();
+			if (!authUtil.verifyAuthToken(jwt)) {
+				response.put("error", "Access token is invalid");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
+			}
+			Map<String, Object> visitorsMap = visitorService.getAllVisitorsOfEmployee(payload);
+			if (visitorsMap.containsKey("error")) {
+				return new ResponseEntity<Map<String, Object>>(visitorsMap, HttpStatus.UNAUTHORIZED);
+			}
+			return new ResponseEntity<Map<String, Object>>(visitorsMap, HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("error", "Something went wrong, please try again!");
