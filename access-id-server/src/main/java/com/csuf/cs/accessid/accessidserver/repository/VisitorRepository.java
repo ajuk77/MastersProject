@@ -8,6 +8,6 @@ import com.csuf.cs.accessid.accessidserver.model.Visitor;
 
 public interface VisitorRepository extends CrudRepository<Visitor, Integer> {
 
-	@Query("SELECT u FROM Visitor u WHERE LOWER(u.unique_id) = LOWER(:unique_id)")
+	@Query("SELECT u FROM Visitor u WHERE LOWER(u.uuid) = LOWER(:unique_id)")
 	public Visitor findVisitorByUniqueId(@Param("unique_id") String unique_id);
 }
