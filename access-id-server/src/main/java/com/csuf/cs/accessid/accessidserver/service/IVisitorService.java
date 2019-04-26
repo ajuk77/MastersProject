@@ -8,5 +8,8 @@ import org.springframework.stereotype.Component;
 public interface IVisitorService {
 	
 	public Map<String, Object> generateVisitorPass(Map<String, Object> payload);
+	
+
+	public Map<String, Object> validateVisitorPass(Map<String, Object> payload);
 
 }
