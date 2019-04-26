@@ -2,6 +2,7 @@ package com.csuf.cs.accessid.accessidserver.service;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -76,8 +77,6 @@ public class VisitorService implements IVisitorService {
 			if (currentTimestamp.before(visitor.getActivationEndTime())
 					&& currentTimestamp.after(visitor.getActivationStartTime())) {
 				response.put("success", true);
-				ObjectMapper mapper = new ObjectMapper();
-				Map<?, ?> objMap = mapper.convertValue(visitor, Map.class);
 				response.put("visitor", visitor);
 				return response;
 			} else {
@@ -85,6 +84,23 @@ public class VisitorService implements IVisitorService {
 				return response;
 			}
 		} catch (Exception e) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("error", "Something went wrong, please try again!");
+			return response;
+		}
+	}
+
+	@Override
+	public Map<String, Object> getAllVisitorsOfEmployee(Map<String, Object> payload) {
+		try {
+			Map<String, Object> response = new HashMap<>();
+			long employeeId = Long.valueOf(payload.get("employeeId").toString());
+			List<Visitor> visitors = visitorRepository.findVisitorByEmployeeId(employeeId);
+
+			response.put("visitor", visitors);
+			response.put("success", true);
+			return response;
+		}catch(Exception e) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("error", "Something went wrong, please try again!");
 			return response;
