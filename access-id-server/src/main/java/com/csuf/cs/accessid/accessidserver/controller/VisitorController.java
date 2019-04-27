@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -75,10 +76,12 @@ public class VisitorController {
 
 	}
 
-	@RequestMapping
+	@RequestMapping("/{id}")
 	public @ResponseBody ResponseEntity<Map<String, Object>> getAllVisitorsOfEmployee(
-			@RequestHeader("authorization") String jwt, @RequestBody Map<String, Object> payload) {
+			@RequestHeader("authorization") String jwt, @PathVariable String id) {
 		try {
+			Map<String, Object> payload = new HashMap<>();
+			payload.put("employeeId", id);
 			Map<String, Object> response = new HashMap<>();
 			if (!authUtil.verifyAuthToken(jwt)) {
 				response.put("error", "Access token is invalid");
