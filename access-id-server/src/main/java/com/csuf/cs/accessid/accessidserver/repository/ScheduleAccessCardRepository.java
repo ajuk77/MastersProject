@@ -12,6 +12,9 @@ public interface ScheduleAccessCardRepository extends CrudRepository<ScheduleAcc
 
 
     @Query("SELECT ac FROM ScheduleAccessCard ac WHERE ac.employeeId=:id and ac.state=:state")
-    List<ScheduleAccessCard> getIdCard(@Param("id") long id, @Param("state") String state);
+    public List<ScheduleAccessCard> getIdCard(@Param("id") long id, @Param("state") String state);
+    
+    @Query("SELECT ac FROM ScheduleAccessCard ac WHERE LOWER(ac.uuid) = LOWER(:unique_id)")
+    public ScheduleAccessCard findScheduleAccessCardByUniqueId(@Param("unique_id") String unique_id);
 
 }

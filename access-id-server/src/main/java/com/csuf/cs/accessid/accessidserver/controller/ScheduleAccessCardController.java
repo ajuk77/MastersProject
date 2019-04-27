@@ -18,7 +18,7 @@ import com.csuf.cs.accessid.accessidserver.service.IGenerateAccessCardService;
 import com.csuf.cs.accessid.accessidserver.util.IAuthUtil;
 
 @RestController
-@RequestMapping("/api/generateid")
+@RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class ScheduleAccessCardController {
 
@@ -28,12 +28,12 @@ public class ScheduleAccessCardController {
 	@Autowired
 	private IGenerateAccessCardService generateAccessCardService;
 
-	@PostMapping
-	public @ResponseBody ResponseEntity<Map<String, Object>> generateAccessId(@RequestHeader("authorization") String jwt, 
-			@RequestBody Map<String, Object> payload) {
+	@PostMapping("/generateid")
+	public @ResponseBody ResponseEntity<Map<String, Object>> generateAccessId(
+			@RequestHeader("authorization") String jwt, @RequestBody Map<String, Object> payload) {
 		try {
 			Map<String, Object> response = new HashMap<>();
-			
+
 			String email = payload.get("email").toString();
 			long id = Long.valueOf(payload.get("id").toString());
 			if (!authUtil.verifyAuthToken(jwt)) {
@@ -49,6 +49,28 @@ public class ScheduleAccessCardController {
 		} catch (Exception e) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("error", "Something went wrong, please try again!");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping("/validateemployee")
+	public @ResponseBody ResponseEntity<Map<String, Object>> validateEmployeeCard(
+			@RequestHeader("authorization") String jwt, @RequestBody Map<String, Object> payload) {
+		try {
+			Map<String, Object> response = new HashMap<>();
+			if (!authUtil.verifyAuthToken(jwt)) {
+				response.put("error", "Access token is invalid");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
+			}
+			response = generateAccessCardService.validateAccessCard(payload);
+			if (response.containsKey("error") || response.containsKey("invalid")) {
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
+			}
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.ACCEPTED);
+
+		} catch (Exception e) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("error", "Failed to validate an employee");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
