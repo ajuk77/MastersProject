@@ -1,0 +1,16 @@
+
+.easy-to-use {
+}
+
+@media only screen and (min-width: 577px) {
+    .content-left {
+        border-right: #e0dddd 1px solid;
+        display: block;
+        margin: 0 auto;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .content-left {
+        margin-bottom: 1.5em;
+    }
+}
