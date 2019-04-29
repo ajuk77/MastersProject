@@ -2,22 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89c976bf-626e-457a-a2dd-f4dcb9d45b8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/styles/dashboard/dashboard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/ValidateID.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard/CurrentIdStatus.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard/GenerateId.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard/GenerateVIsitorForm.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/dashboard/GetVisitors.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/access.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/validate.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/UserReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/UserReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../access-id-server/src/main/java/com/csuf/cs/accessid/accessidserver/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../access-id-server/src/main/java/com/csuf/cs/accessid/accessidserver/controller/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../access-id-server/src/main/java/com/csuf/cs/accessid/accessidserver/controller/ScheduleAccessCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../access-id-server/src/main/java/com/csuf/cs/accessid/accessidserver/controller/ScheduleAccessCardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../access-id-server/src/main/java/com/csuf/cs/accessid/accessidserver/controller/VisitorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../access-id-server/src/main/java/com/csuf/cs/accessid/accessidserver/controller/VisitorController.java" afterDir="false" />
@@ -42,9 +26,33 @@
         <entry file="file://$PROJECT_DIR$/src/components/auth/ValidateID.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
-              <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+              <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/auth/RegisterEmployee.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="79" column="29" lean-forward="true" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/auth/LoginComponent.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1840">
+              <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -219,6 +227,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -252,12 +261,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556303699300</updated>
-      <workItem from="1556303700803" duration="37845000" />
+      <workItem from="1556303700803" duration="38885000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37845000" />
+    <option name="totallyTimeSpent" value="38885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -421,16 +430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/auth/LoginComponent.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="107" column="73" selection-start-line="107" selection-start-column="48" selection-end-line="107" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/styles/_variables.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -539,10 +538,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/auth/RegisterEmployee.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="79" column="29" lean-forward="true" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/auth/LoginComponent.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1840">
+          <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/auth/ValidateID.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
-          <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+          <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

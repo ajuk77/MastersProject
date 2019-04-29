@@ -6,13 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.csuf.cs.accessid.accessidserver.service.IGenerateAccessCardService;
 import com.csuf.cs.accessid.accessidserver.util.IAuthUtil;
@@ -42,7 +36,7 @@ public class ScheduleAccessCardController {
 			}
 			Map<String, Object> idCard = generateAccessCardService.generateAccessCard(payload);
 			if (idCard.containsKey("error")) {
-				return new ResponseEntity<Map<String, Object>>(idCard, HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<Map<String, Object>>(idCard, HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Map<String, Object>>(idCard, HttpStatus.ACCEPTED);
 
@@ -64,13 +58,35 @@ public class ScheduleAccessCardController {
 			}
 			response = generateAccessCardService.validateAccessCard(payload);
 			if (response.containsKey("error") || response.containsKey("invalid")) {
-				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 			}
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.ACCEPTED);
 
 		} catch (Exception e) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("error", "Failed to validate an employee");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/access-id/{id}")
+	public @ResponseBody ResponseEntity<Map<String, Object>> getEmployeeIdDetails(@PathVariable String id,
+																	@RequestHeader("authorization") String jwt){
+		try {
+			if(authUtil.verifyAuthToken(jwt)) {
+				long empId = Long.valueOf(id);
+				Map<String, Object> idDetails = generateAccessCardService.getEmployeeIdDetails(empId);
+				return (!idDetails.containsKey("error"))
+						? new ResponseEntity<Map<String, Object>>(idDetails, HttpStatus.ACCEPTED)
+						: new ResponseEntity<Map<String, Object>>(idDetails, HttpStatus.BAD_REQUEST);
+			} else {
+				Map<String, Object> response = new HashMap<>();
+				response.put("error", "Access token is invalid");
+				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
+			}
+		} catch(Exception e) {
+			Map<String, Object> response = new HashMap<>();
+			response.put("error", "Failed to fetch employee id details. Try again in some time.");
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

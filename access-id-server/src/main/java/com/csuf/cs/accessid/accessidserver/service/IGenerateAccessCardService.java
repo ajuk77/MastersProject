@@ -11,4 +11,6 @@ public interface IGenerateAccessCardService {
 	
 	public Map<String, Object> validateAccessCard(Map<String, Object> payload);
 
+	public Map<String, Object> getEmployeeIdDetails(long empId);
+
 }

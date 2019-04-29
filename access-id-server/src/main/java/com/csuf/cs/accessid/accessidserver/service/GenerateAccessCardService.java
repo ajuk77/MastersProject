@@ -2,15 +2,14 @@ package com.csuf.cs.accessid.accessidserver.service;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.csuf.cs.accessid.accessidserver.model.ScheduleAccessCard;
@@ -103,6 +102,31 @@ public class GenerateAccessCardService implements IGenerateAccessCardService {
 		catch (Exception e) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("error", "Something went wrong, please try again!");
+			return response;
+		}
+	}
+
+	@Override
+	public Map<String, Object> getEmployeeIdDetails(long empId) {
+		Map<String, Object> response = new HashMap<>();
+		try {
+//			Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "employeeId"));
+//			Pageable pageable = new PageRequest(0, 1);
+			List<ScheduleAccessCard> scheduleAccessCard =
+					scheduleAccessCardRepository.findScheduleAccessCardByEmployeeId(empId);
+
+//			Get only first record. We only want the last ID record.
+			ScheduleAccessCard sac = scheduleAccessCard.get(0);
+//			Get current time and compare with time in record...
+			long currTime = System.currentTimeMillis();
+			Timestamp ts = new Timestamp(currTime);
+			if(sac.getActivationStartTime().before(ts) && sac.getActivationEndTime().after(ts)) {
+				sac.setState("active");
+			} else sac.setState("inactive");
+			response.put("employee", sac);
+			return response;
+		} catch(Exception e) {
+			response.put("error", "Something went wrong, try again in some time.");
 			return response;
 		}
 	}

@@ -42,7 +42,7 @@ public class VisitorController {
 			}
 			Map<String, Object> visitorPass = visitorService.generateVisitorPass(payload);
 			if (visitorPass.containsKey("error")) {
-				return new ResponseEntity<Map<String, Object>>(visitorPass, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<Map<String, Object>>(visitorPass, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 
 			return new ResponseEntity<Map<String, Object>>(visitorPass, HttpStatus.ACCEPTED);
