@@ -18,9 +18,23 @@ $theme-colors: (
 $body-bg: $paper;
 $body-color: $coal;
 
-
 // Get bootstrap base config
 @import "~bootstrap/scss/bootstrap";
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 1;
+  }
+  @include media-breakpoint-only(sm) {
+    column-count: 1;
+  }
+}
 
 .font-600 {
     font-weight: 600;

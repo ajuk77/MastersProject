@@ -18,19 +18,19 @@ function UserProfile(props: IUserProfileProps) {
                         <h4 className="mb-0">Employee ID: {props.user.id}</h4>
                     </CardHeader>
                     <CardBody>
-                        
                         <h2>{props.user.firstName} {props.user.lastName}</h2>
                         <QRCode className="mt-4" bgColor="#FFFFFF"
                             fgColor="#000000"
                             level="Q"
                             style={{ width: 256 }}
-                            value="some text" />
+                            value={JSON.stringify({firstName: props.user.firstName, lastName: props.user.lastName})} />
                         <h3 className="mt-4">
                             {props.user.email}
                         </h3>
                         <h3 className="mt-4">
                        {props.user.contactNo}
                         </h3>
+                        <small className="muted">This is not your id card. Go to dashboard.</small>
                     </CardBody>
                 </Card>
             </Container>

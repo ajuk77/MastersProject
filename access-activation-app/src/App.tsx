@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from './store/actions/UserActions';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserCircle, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faChevronCircleRight, faSync } from '@fortawesome/free-solid-svg-icons';
 // Routes
 
 import Home from './views/Home';
@@ -17,12 +17,14 @@ import { RegisterEmployee } from './views/Register';
 import PrivateRoute from './components/auth/PrivateRoute';
 import unauthorized from './views/Unauthorized';
 import UserProfile from './views/UserProfile';
+import ValidateID from "./components/auth/ValidateID";
 
 
 // Icons
 library.add(
   faUserCircle,
-  faChevronCircleRight
+  faChevronCircleRight,
+    faSync
 )
 
 interface IAppProps{
@@ -51,6 +53,7 @@ class App extends Component<IAppProps, IAppState> {
             <Route path="/register" exact component={RegisterEmployee} />
             <PrivateRoute path="/dashboard" accessToken={this.props.auth.accessToken} exact component={Dashboard}/>
             <PrivateRoute path="/profile" accessToken={this.props.auth.accessToken} exact component={UserProfile}/>
+            <PrivateRoute path="/validate" accessToken={this.props.auth.accessToken} exact component={ValidateID}/>
           </Fragment>
         </Router>
         <Footer />

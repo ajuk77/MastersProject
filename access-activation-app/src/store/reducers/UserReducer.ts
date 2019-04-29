@@ -17,6 +17,7 @@ export default function(state = INITIAL_STATE, action: any) {
         }
         case LOGOUT_USER.type: {
             const {user, accessToken} = action.payload;
+            window.location.href = '/';
             return {
                 ...state,
                 accessToken,
