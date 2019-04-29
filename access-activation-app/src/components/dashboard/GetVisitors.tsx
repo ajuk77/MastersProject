@@ -51,7 +51,7 @@ class GetVisitors extends React.Component<any, any> {
 
     getTime(time: any) {
         const date = moment.utc(time).toDate();
-        return moment(date).local().format('DD/mm/YYYY');
+        return moment(date).local().format('DD/MM/YYYY');
     }
 
     getAccessDate(time: any) {

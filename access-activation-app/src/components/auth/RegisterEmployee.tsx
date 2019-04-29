@@ -77,7 +77,8 @@ export const Register = (props: IRegisterProps) => {
             contactNo
         }).then(res => {
             console.log(res);
-            alert('success');
+            window.location.href='/login'
+            //alert('success');
         }).catch(err => {
             console.log(err);
         })
